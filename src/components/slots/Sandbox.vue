@@ -14,7 +14,8 @@ export default {
   },
   data: () => ({
     styles: {},
-    innerDir: ''
+    innerDir: '',
+    expand: false
   }),
   methods: {
     setStyle (data) {
@@ -51,6 +52,8 @@ export default {
 
 <template>
   <div class="b-slot">
+    <div class="b-slot__tune-button">
+      <icon-base name="equalizer"></icon-base>
       <div class="b-slot__tune ptah-control">
         <ul>
           <li @click.stop="align('flex-start', true)"><icon-base name="groupTop"></icon-base></li>
@@ -67,9 +70,10 @@ export default {
           <li @click.stop="changeDirection('row')"><icon-base name="groupRow"></icon-base></li>
         </ul>
       </div>
-      <slot>
+    </div>
+    <slot>
 
-      </slot>
+    </slot>
   </div>
 </template>
 
@@ -84,6 +88,28 @@ export default {
   min-height: 20rem
   .is-editable &
     border: 1px dashed $green
+  &:hover
+    .b-slot__tune-button
+      display: flex
+    /deep/
+      .b-elements
+        display: flex
+  &__tune-button
+    background: $color-gray
+    height: $slot-step
+    width: $slot-step
+    display: none
+    justify-content: center
+    align-items: center
+    position: absolute
+    top: 5.2rem
+    right: 0
+    cursor: pointer
+    opacity: .3
+    &:hover
+      opacity: 1
+      .b-slot__tune
+        display: flex
   &__tune
     background: $color-gray
     border: none
@@ -93,14 +119,12 @@ export default {
     justify-content: center
     align-items: center
     position: absolute
-    top: 5.2rem
-    right: 0px
+    top: $slot-step
+    right: 0
     padding: 5px
     overflow: hidden
-    opacity: .3
-    z-index: 1
-    &:hover
-      opacity: 1
+    z-index: 5
+    display: none
     ul
       list-style: none
       margin: 0

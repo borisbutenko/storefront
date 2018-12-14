@@ -115,6 +115,7 @@ export default {
   top: 0
   right: 0
   opacity: .3
+  display: none
   &:hover
     opacity: 1
   &__show-list
